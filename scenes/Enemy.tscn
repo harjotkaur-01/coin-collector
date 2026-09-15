@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dydmmxxrikx3p"]
+
+[ext_resource type="Script" uid="uid://uqr07m5bl3mr" path="res://scripts/enemy.gd" id="1_55jtl"]
+[ext_resource type="Texture2D" uid="uid://slxrhdgsvnct" path="res://assets/logo.png" id="2_mpr68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0hlr"]
+size = Vector2(55, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1nsc"]
+radius = 27.513634
+
+[node name="Enemy" type="CharacterBody2D" unique_id=527465337]
+script = ExtResource("1_55jtl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=338160568]
+scale = Vector2(0.31500003, 0.2975)
+texture = ExtResource("2_mpr68")
+
+[node name="Layer 2" type="CollisionShape2D" parent="." unique_id=1223182514]
+shape = SubResource("RectangleShape2D_b0hlr")
+disabled = true
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=928733487]
+collision_layer = 4
+
+[node name="Layer 3" type="CollisionShape2D" parent="AttackArea" unique_id=537003047]
+shape = SubResource("CircleShape2D_c1nsc")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
